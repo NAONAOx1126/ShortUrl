@@ -1,0 +1,12 @@
+/_cache
+/_cache_smarty
+/_contents
+/_logs
+/.settings
+/upload
+/.buildpath
+/*.lock
+/templates/android
+/templates/mobile
+/templates/iphone
+/templates/sphone

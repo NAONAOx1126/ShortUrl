@@ -1,0 +1,14 @@
+{
+    "require": {
+        "naonaox1126/vizualizer": "dev-develop",
+        "naonaox1126/vizualizer_admin": "dev-develop",
+        "naonaox1126/vizualizer_shortage": "dev-develop",
+        "smarty/smarty": ">=3.1.0"
+    }, 
+    "require-dev": {
+        "naonaox1126/vizualizer": "dev-develop",
+        "naonaox1126/vizualizer_admin": "dev-develop",
+        "naonaox1126/vizualizer_shortage": "dev-develop",
+        "smarty/smarty": "dev-trunk"
+    }
+}

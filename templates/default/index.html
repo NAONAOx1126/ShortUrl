@@ -1,0 +1,79 @@
+<!--{include file="common/header.html"}-->
+<meta name="loadmodule" content="Admin.Login" error="login.html" />
+<meta name="loadmodule" content="Input.Reset" />
+<meta name="loadmodule" content="Shortage.Url.Delete" />
+<meta name="loadmodule" content="Shortage.Url.Page" />
+<!--{include file="common/subheader.html"}-->
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div id="content" class="span12">
+            <!-- content starts -->
+            <div class="box">
+                <div class="box-header well">
+                    <h2>
+                        <i class="icon-list-alt"></i> 短縮URL一覧
+                    </h2>
+                    <div class="box-icon">
+                        <a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a> <a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a> <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
+                    </div>
+                </div>
+                <div class="box-content">
+                    <div id="pagination pagination-centered">
+                        <!--{$attr.urls_pager->getPageLink()}-->
+                    </div>
+                    <div>
+                        <a href="edit.html" class="btn btn-primary">新規登録</a>
+                        <a href="summery.html" class="btn btn-primary">クリックカウント集計</a>
+                    </div>
+                    <table class="table table-striped table-bordered bootstrap-datatable">
+                        <thead>
+                            <tr>
+                                <th>短縮<br />文字列</th>
+                                <th>短縮URL</th>
+                                <th>URL</th>
+                                <th>メモ</th>
+                                <th>登録日</th>
+                                <th>クリック数<br />（TOTAL／PC／SP／携帯）</th>
+                                <th>編集／削除</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!--{foreach from=$attr.urls item="url"}-->
+                            <tr>
+                                <td><!--{$url->url_code}--></td>
+                                <td>
+                                    <input type="text" value="http://<!--{$smarty.server.SERVER_NAME}--><!--{base}-->/<!--{$attr[VizualizerAdmin::KEY]->url}-->/<!--{$url->url_code}-->/" class="input-xlarge" readonly onclick="this.select()" />
+                                    <br />
+                                    <input type="text" value="http://<!--{$smarty.server.SERVER_NAME}--><!--{base}-->/<!--{$attr[VizualizerAdmin::KEY]->url}-->/<!--{$url->url_code}-->.html" class="input-xlarge" readonly onclick="this.select()" />
+                                </td>
+                                <td>
+                                    <span title="<!--{$url->pc_url}-->" data-rel="tooltip"><!--{$url->pc_url|mb_truncate:40}--></span><br />
+                                    <span title="<!--{$url->sp_url}-->" data-rel="tooltip"><!--{$url->sp_url|mb_truncate:40}--></span><br />
+                                    <span title="<!--{$url->mb_url}-->" data-rel="tooltip"><!--{$url->mb_url|mb_truncate:40}--></span><br />
+                                </td>
+                                <td><!--{$url->description}--></td>
+                                <td><!--{$url->create_time|date_format:"%Y/%m/%d"}--></td>
+                                <td>（<!--{$url->total_count|default:0}-->／<!--{$url->pc_count|default:0}-->／<!--{$url->sp_count|default:0}-->／<!--{$url->mb_count|default:0}-->）</td>
+                                <td>
+                                    <a href="edit.html?url_id=<!--{$url->url_id}-->" class="btn btn-success">編集</a>
+                                    <a href="index.html?delete=1&url_id=<!--{$url->url_id}-->" class="btn btn-danger" onclick="return confirm('<!--{$url->url_code}-->を削除します。よろしいですか？')">削除</a>
+                                </td>
+                            </tr>
+                            <!--{/foreach}-->
+                        </tbody>
+                    </table>
+                    <div id="pagination pagination-centered">
+                        <!--{$attr.urls_pager->getPageLink()}-->
+                    </div>
+                </div>
+            </div>
+            <!-- content ends -->
+        </div>
+        <!--/#content.span10-->
+    </div>
+    <!--/fluid-row-->
+    <hr>
+    <!--{include file="common/subfooter.html"}-->
+</div>
+<!--/.fluid-container-->
+<!--{include file="common/footer.html"}-->

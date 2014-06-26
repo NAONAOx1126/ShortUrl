@@ -1,0 +1,11 @@
+# アップロードのサイズを拡張
+php_value upload_max_filesize 128M
+php_value post_max_size 130M
+
+# Rewriteの有効化
+RewriteEngine on
+
+# htmlの場合はindex.phpを呼び出す。
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.+)$ index.php [L]

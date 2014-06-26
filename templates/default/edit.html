@@ -1,0 +1,85 @@
+<!--{include file="common/header.html"}-->
+<meta name="loadmodule" content="Admin.Login" error="login.html" />
+<meta name="loadmodule" content="Shortage.Url.Detail" />
+<!--{assign var="url" value=$attr.url}-->
+<!--{include file="common/subheader.html"}-->
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div id="content" class="span12">
+            <!-- content starts -->
+            <div>
+                <div class="row-fluid sortable">
+                    <div class="box span12">
+                        <div class="box-header well" data-original-title>
+                            <h2>
+                                <i class="icon-edit"></i> 短縮URL登録／編集
+                            </h2>
+                        </div>
+                        <!--{if is_array($ERRORS) && count($ERRORS) > 0}-->
+                        <div class="box-content alerts">
+                            <!--{foreach from=$ERRORS item="error"}-->
+                            <div class="alert alert-error">
+                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                <!--{$error}-->
+                            </div>
+                            <!--{/foreach}-->
+                        </div>
+                        <!--{/if}-->
+                        <div class="box-content">
+                            <form action="complete.html" method="POST" class="form-horizontal">
+                                <input type="hidden" name="url_id" value="<!--{$url->url_id}-->" />
+                                <fieldset>
+                                    <legend>短縮URLの情報を設定してください</legend>
+                                    <div class="control-group">
+                                        <label class="control-label" for="typeahead">短縮URLコード </label>
+                                        <div class="controls">
+                                            <input type="text" class="span6" id="url_code" name="url_code" value="<!--{$url->url_coode|input:"url_code"}-->" placeholder="短縮URLとして利用するコード" />
+                                            ※半角英数のみ
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label" for="typeahead">URL（PC） </label>
+                                        <div class="controls">
+                                            <input type="text" class="span6" id="pc_url" name="pc_url" value="<!--{$url->pc_url|input:"pc_url"}-->" placeholder="PCのリダイレクト先URL" />
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label" for="typeahead">URL（スマホ） </label>
+                                        <div class="controls">
+                                            <input type="text" class="span6" id="sp_url" name="sp_url" value="<!--{$url->sp_url|input:"sp_url"}-->" placeholder="スマホのリダイレクト先URL" />
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label" for="typeahead">URL（携帯） </label>
+                                        <div class="controls">
+                                            <input type="text" class="span6" id="mb_url" name="mb_url" value="<!--{$url->mb_url|input:"mb_url"}-->" placeholder="携帯のリダイレクト先URL" />
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label" for="typeahead">メモ </label>
+                                        <div class="controls">
+                                            <input type="text" class="span6" id="description" name="description" value="<!--{$url->description|input:"description"}-->" placeholder="短縮URLの説明" />
+                                        </div>
+                                    </div>
+                                    <div class="form-actions">
+                                        <button type="submit" name="save" value="true" class="btn btn-primary">登録内容を確認する</button>
+                                        <a href="index.html" class="btn">一覧に戻る</a>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                    <!--/span-->
+                </div>
+                <!--/row-->
+            </div>
+            <!-- content ends -->
+        </div>
+        <!--/#content.span10-->
+    </div>
+    <!--/fluid-row-->
+    <hr>
+    <!--{include file="common/subfooter.html"}-->
+</div>
+<!--/.fluid-container-->
+<!--{include file="common/footer.html"}-->
