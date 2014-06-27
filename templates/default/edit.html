@@ -33,7 +33,7 @@
                                     <div class="control-group">
                                         <label class="control-label" for="typeahead">短縮URLコード </label>
                                         <div class="controls">
-                                            <input type="text" class="span6" id="url_code" name="url_code" value="<!--{$url->url_coode|input:"url_code"}-->" placeholder="短縮URLとして利用するコード" />
+                                            <input type="text" class="span6" id="url_code" name="url_code" value="<!--{$url->url_code|input:"url_code"}-->" placeholder="短縮URLとして利用するコード" />
                                             ※半角英数のみ
                                         </div>
                                     </div>
@@ -59,6 +59,12 @@
                                         <label class="control-label" for="typeahead">メモ </label>
                                         <div class="controls">
                                             <input type="text" class="span6" id="description" name="description" value="<!--{$url->description|input:"description"}-->" placeholder="短縮URLの説明" />
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label" for="typeahead">カスタムタグ </label>
+                                        <div class="controls">
+                                            <textarea class="span6" cols="100" rows="8" name="custom_tag"><!--{$url->custom_tag|input:"custom_tag"}--></textarea>
                                         </div>
                                     </div>
                                     <div class="form-actions">
