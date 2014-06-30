@@ -53,10 +53,10 @@ if($_POST["install"]){
     if(!is_dir($baseDir."/_configure/")){
         mkdir($baseDir."/_configure/");
     }
-    if(($fp = fopen($baseDir."/_configure/configure_".$_POST["domain_name"].".php")) !== FALSE){
-        $data = file_get_contents("http://config.vizualizer.jp/index.php", false, stream_context_create($context));
-        echo nl2br(htmlspecialchars($data));
-        fwrite($fp, $data);
+    if(($fp = fopen($baseDir."/_configure/configure_".$_POST["domain_name"].".php", "w+")) !== FALSE){
+        $content = file_get_contents("http://config.vizualizer.jp/index.php", false, stream_context_create($context));
+        echo nl2br(htmlspecialchars($content));
+        fwrite($fp, $content);
         fclose($fp);
     }
 
