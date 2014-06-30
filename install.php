@@ -91,7 +91,7 @@ if($_POST["install"]){
 
     $connection = Vizualizer_Database_Factory::begin("shortage");
     try{
-        $connection->query("DROP TABLE shortage_click_logs.sql");
+        $connection->query("DROP TABLE shortage_click_logs");
         $connection->query(file_get_contents($baseDir."/sql/01_shortage_click_logs.sql"));
         $connection->query("DROP TABLE shortage_urls");
         $connection->query(file_get_contents($baseDir."/sql/01_shortage_urls.sql"));
