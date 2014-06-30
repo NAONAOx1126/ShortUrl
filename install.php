@@ -54,7 +54,9 @@ if($_POST["install"]){
         mkdir($baseDir."/_configure/");
     }
     if(($fp = fopen($baseDir."/_configure/configure_".$_POST["domain_name"].".php")) !== FALSE){
-        fwrite($fp,  file_get_contents("http://config.vizualizer.jp/index.php", false, stream_context_create($context)));
+        $data = file_get_contents("http://config.vizualizer.jp/index.php", false, stream_context_create($context));
+        echo nl2br(htmlspecialchars($data));
+        fwrite($fp, $data);
         fclose($fp);
     }
 
