@@ -61,7 +61,16 @@ if($_POST["install"]){
     }
     // データベースを作成
     require $baseDir . "/vendor/autoload.php";
-    Vizualizer::startup();
+    define('VIZUALIZER_SITE_ROOT', realpath("."));
+
+    // Bootstrapを実行する。
+    Vizualizer_Bootstrap::register(10, "PhpVersion");
+    Vizualizer_Bootstrap::register(20, "Configure");
+    Vizualizer_Bootstrap::register(30, "ErrorMessage");
+    Vizualizer_Bootstrap::register(40, "Timezone");
+    Vizualizer_Bootstrap::register(50, "Locale");
+    Vizualizer_Bootstrap::register(60, "UserAgent");
+    Vizualizer_Bootstrap::startup();
 
     $connection = Vizualizer_Database_Factory::begin("default");
     try{
