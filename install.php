@@ -59,6 +59,37 @@ if($_POST["install"]){
         fwrite($fp, $content);
         fclose($fp);
     }
+    // データベースを作成
+    require $baseDir . "/vendor/autoload.php";
+    Vizualizer::startup();
+
+    $connection = Vizualizer_Database_Factory::begin("default");
+    try{
+        $connection->query("DROP TABLE admin_company_operators");
+        $connection->query(file_get_contents($baseDir."/sql/01_admin_company_operators.sql"));
+        $connection->query("DROP TABLE admin_companys");
+        $connection->query(file_get_contents($baseDir."/sql/01_admin_companys.sql"));
+        $connection->query("DROP TABLE admin_roles");
+        $connection->query(file_get_contents($baseDir."/sql/01_admin_roles.sql"));
+        $connection->query(file_get_contents($baseDir."/sql/02_admin_company_operators.sql"));
+        $connection->query("INSERT INTO `admin_companys` (`company_id`, `company_name`, `display_flg`, `create_time`, `update_time`) VALUES (1, '".$_POST["company_name"]."', 1, NOW(), NOW())");
+        $connection->query("INSERT INTO `admin_roles` (`role_id`, `role_code`, `role_name`, `create_time`, `update_time`) VALUES (1, 'administrator', '管理者', NOW(), NOW()), (2, 'user', '利用者', NOW(), NOW())");
+        $connection->query("INSERT INTO `admin_company_operators` (`operator_id`, `company_id`, `role_id`, `login_id`, `password`, `operator_name`, `url`, `email`, `display_flg`, `create_time`, `update_time`) VALUES (1, 1, 2, '".$_POST["login_id"]."', SHA1('".$_POST["login_id"].":".$_POST["password"]."'), '".$_POST["operator_name"]."', 'link', '".$_POST["site_email"]."', 1, NOW(), NOW())");
+        Vizualizer_Database_Factory::commit($connection);
+    }catch(Vizualizer_Exception_Database $e){
+        Vizualizer_Database_Factory::rollback($connection);
+    }
+
+    $connection = Vizualizer_Database_Factory::begin("shortage");
+    try{
+        $connection->query("DROP TABLE shortage_click_logs.sql");
+        $connection->query(file_get_contents($baseDir."/sql/01_shortage_click_logs.sql"));
+        $connection->query("DROP TABLE shortage_urls");
+        $connection->query(file_get_contents($baseDir."/sql/01_shortage_urls.sql"));
+        Vizualizer_Database_Factory::commit($connection);
+    }catch(Vizualizer_Exception_Database $e){
+        Vizualizer_Database_Factory::rollback($connection);
+    }
 
     echo "インストールが完了しました。";
     exit;
@@ -113,6 +144,22 @@ if($_POST["install"]){
                             <div><label>
                             短縮URL用DB名（オプション）
                             <input type="text" name="database[shortage][name]" value="" />
+                            </label></div>
+                            <div><label>
+                            管理法人名
+                            <input type="text" name="company_name" value="" />
+                            </label></div>
+                            <div><label>
+                            管理者名
+                            <input type="text" name="operator_name" value="" />
+                            </label></div>
+                            <div><label>
+                            ログインID
+                            <input type="text" name="login_id" value="" />
+                            </label></div>
+                            <div><label>
+                            パスワード
+                            <input type="text" name="password" value="" />
                             </label></div>
                             <p class="center span5">
                                 <button type="submit" name="install" value="install">インストール</button>
