@@ -50,6 +50,9 @@ if($_POST["install"]){
     if(empty($_POST["domain_name"])){
         $_POST["domain_name"] = "localhost";
     }
+    if(!is_dir($baseDir."/_configure/")){
+        mkdir($baseDir."/_configure/");
+    }
     if(($fp = fopen($baseDir."/_configure/configure_".$_POST["domain_name"].".php")) !== FALASE){
         fwrite($fp,  file_get_contents("http://config.vizualizer.jp/index.php", false, stream_context_create($context)));
         fclose($fp);
