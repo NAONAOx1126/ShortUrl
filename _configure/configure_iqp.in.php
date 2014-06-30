@@ -6,7 +6,7 @@ Vizualizer_Configure::set("timezone", "Asia/Tokyo");
 Vizualizer_Configure::set("site_code", "shortUrl");
 
 // サイト名
-Vizualizer_Configure::set("site_name", "アフィリエイトシステム");
+Vizualizer_Configure::set("site_name", "短縮URLシステム");
 
 // サイトメールアドレス
 Vizualizer_Configure::set("site_email", "minagawa@dot-hacks.com");

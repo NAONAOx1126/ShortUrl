@@ -39,6 +39,7 @@
                         </thead>
                         <tbody>
                             <!--{foreach from=$attr.urls item="url"}-->
+                            <!--{$url->calcClickCounts()}-->
                             <tr>
                                 <td><!--{$url->url_code}--></td>
                                 <td>
@@ -48,8 +49,8 @@
                                 </td>
                                 <td>
                                     <span title="<!--{$url->pc_url}-->" data-rel="tooltip"><!--{$url->pc_url|mb_truncate:40}--></span><br />
-                                    <span title="<!--{$url->sp_url}-->" data-rel="tooltip"><!--{$url->sp_url|mb_truncate:40}--></span><br />
-                                    <span title="<!--{$url->mb_url}-->" data-rel="tooltip"><!--{$url->mb_url|mb_truncate:40}--></span><br />
+                                    <span title="<!--{$url->sp_url|default:$url->pc_url}-->" data-rel="tooltip"><!--{$url->sp_url|default:$url->pc_url|mb_truncate:40}--></span><br />
+                                    <span title="<!--{$url->mb_url|default:$url->pc_url}-->" data-rel="tooltip"><!--{$url->mb_url|default:$url->pc_url|mb_truncate:40}--></span><br />
                                 </td>
                                 <td><!--{$url->description}--></td>
                                 <td><!--{$url->create_time|date_format:"%Y/%m/%d"}--></td>
