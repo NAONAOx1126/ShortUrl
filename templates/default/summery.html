@@ -18,7 +18,7 @@
                 </div>
                 <div class="box-content">
                     <!--{if $attr.currentDay != "" && $attr.currentKeyword != ""}-->
-                    <div><a href="?ym=<!--{$attr.currentYm}-->&d=<!--{$attr.currentDay}-->">戻る</a></div>
+                    <div><a href="?ym=<!--{$attr.currentYm}-->&d=<!--{$attr.currentDay|string_format:"%02d"}-->">戻る</a></div>
                     <table class="table table-striped table-bordered bootstrap-datatable">
                         <thead>
                             <tr>
@@ -52,7 +52,7 @@
                         <!--{if $day == $attr.currentDay}-->
                         <!--{$day}-->
                         <!--{else}-->
-                        <a class="btn btn-mini" href="?ym=<!--{$attr.currentYm}-->&d=<!--{$day}-->"><!--{$day}--></a>
+                        <a class="btn btn-mini" href="?ym=<!--{$attr.currentYm}-->&d=<!--{$day|string_format:"%02d"}-->"><!--{$day}--></a>
                         <!--{/if}-->
                         <!--{/foreach}-->
                         <a class="btn btn-mini" href="?ym=<!--{$attr.nextYm}-->">翌月</a>
